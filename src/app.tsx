@@ -1,12 +1,13 @@
 /** 库 */
-import React from 'react';
+import React from "react";
+import { history } from "umi";
 
 /** 组件--antd优先 */
-import { RightRender } from '@/layouts';
+import { RightRender } from "@/layouts";
 
 /** 本地utils、模块 */
-import logo from '@/assets/logo-small.png';
-import defaultSettings, { DefaultSettings } from '../config/defaultSettings';
+import logo from "@/assets/logo-small.png";
+import defaultSettings, { DefaultSettings } from "../config/defaultSettings";
 // import { queryCurrent } from './services/user';
 
 /** const/let声明 */
@@ -14,12 +15,12 @@ import defaultSettings, { DefaultSettings } from '../config/defaultSettings';
 /** layout配置/操作，需要在配置文件开启layout */
 export let layout: any = {
   logo, // 产品 Logo
-  name: 'Angsi', // 侧边栏头部产品名，默认值为包名
-  locale: true,
+  name: "昂司打印", // 侧边栏头部产品名，默认值为包名
+  // locale: true,
   // pure: true, // 是否删除框架layout
   menu: {
     locale: true,
-    defaultOpenAll: false,
+    defaultOpenAll: false
   },
   settings: defaultSettings,
   /** collapsed固定开/关 */
@@ -58,7 +59,7 @@ export let layout: any = {
   /** 顶部栏开合 */
   rightRender: (initInfo: any) => {
     return <RightRender />;
-  }, // return string || ReactNode;
+  } // return string || ReactNode;
 };
 
 export async function getInitialState(): Promise<{
@@ -66,19 +67,19 @@ export async function getInitialState(): Promise<{
   settings?: DefaultSettings;
 }> {
   // 如果是登录页面，不执行
-  // if (history.location.pathname !== '/user/login') {
-  //   try {
-  //     const currentUser = await queryCurrent();
-  //     return {
-  //       currentUser,
-  //       settings: defaultSettings,
-  //     };
-  //   } catch (error) {
-  //     history.push('/user/login');
-  //   }
-  // }
+  if (history.location.pathname !== "/user/login") {
+    try {
+      // const currentUser = await queryCurrent();
+      return {
+        // currentUser,
+        settings: defaultSettings
+      };
+    } catch (error) {
+      history.push("/user/login");
+    }
+  }
   return {
-    settings: defaultSettings,
+    settings: defaultSettings
   };
 }
 
@@ -91,7 +92,7 @@ export function onRouteChange({
   matchedRoutes,
   location,
   routes,
-  action,
+  action
 }: {
   matchedRoutes: any;
   location: any;
@@ -100,7 +101,7 @@ export function onRouteChange({
 }) {
   console.log(location.pathname);
   if (matchedRoutes.length) {
-    document.title = matchedRoutes[matchedRoutes.length - 1].route.title || '';
+    document.title = matchedRoutes[matchedRoutes.length - 1].route.title || "";
   }
 }
 
