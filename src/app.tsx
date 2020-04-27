@@ -99,10 +99,13 @@ export function onRouteChange({
   routes: any;
   action: any;
 }) {
-  console.log(location.pathname);
-  if (matchedRoutes.length) {
-    document.title = matchedRoutes[matchedRoutes.length - 1].route.title || "";
-  }
+  // 页面title配置
+  document.title = "昂司打印后台管理系统";
+  // if (matchedRoutes.length) {
+  //   console.log(location.pathname);
+  //   document.title = matchedRoutes[matchedRoutes.length - 1].route.title || "";
+  //   console.log(document.title);
+  // }
 }
 
 /** render覆写 render，会直接阻断所有的运行时 */
