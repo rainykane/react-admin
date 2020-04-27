@@ -1,25 +1,27 @@
-import api from './request';
+import request from "./interceptors";
 
 const Methods = (method: string, url: string, params: any) => {
   return new Promise((resolve, reject) => {
-    api[method](url, {
-      params,
+    request[method](url, {
+      ...params
     })
       .then((response: any) => {
         resolve(response);
       })
       .catch((error: any) => {
+        console.log(error);
+
         reject(error);
       });
   });
 };
 
 const Get = (url: string, params?: any) => {
-  return Methods('get', url, params);
+  return Methods("get", url, params);
 };
 
 const Post = (url: string, params: any) => {
-  return Methods('post', url, params);
+  return Methods("post", url, params);
 };
 
 export { Get, Post };
