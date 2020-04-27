@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import { Form, Input } from 'antd';
+import { Form, Input } from "antd";
 
-import { LockOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
+import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 
 export default ({
   code,
-  getPatternCode,
+  getPatternCode
 }: {
   code: string | undefined;
   getPatternCode: any;
@@ -15,7 +15,7 @@ export default ({
     <React.Fragment>
       <Form.Item
         name="username"
-        rules={[{ required: true, message: '请输入用户名!' }]}
+        rules={[{ required: true, message: "请输入用户名!" }]}
       >
         <Input
           size="large"
@@ -26,7 +26,7 @@ export default ({
 
       <Form.Item
         name="password"
-        rules={[{ required: true, min: 6, message: '请至少输入6位数密码!' }]}
+        rules={[{ required: true, min: 6, message: "请至少输入6位数密码!" }]}
       >
         <Input.Password
           size="large"
@@ -38,14 +38,19 @@ export default ({
       <Form.Item
         name="code"
         className="flex"
-        rules={[{ required: true, message: '请输入验证码!' }]}
+        rules={[{ required: true, message: "请输入验证码!" }]}
       >
         <Input
           size="large"
           placeholder="验证码"
           prefix={<MailOutlined className="site-form-item-icon" />}
           addonAfter={
-            <img src={code} onClick={getPatternCode} alt="logo" width="100px" />
+            <img
+              src={code}
+              onClick={getPatternCode}
+              alt="logo"
+              style={{ width: "100px", cursor: "pointer" }}
+            />
           }
         />
       </Form.Item>
