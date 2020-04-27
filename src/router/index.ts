@@ -26,10 +26,9 @@ export default [
   },
   {
     path: "/404",
-    redirect: "/404",
     title: "页面丢失",
     exact: true,
-    component: "@/pages/404" // () => import(/* webpackChunkName: "about" */ "../views/404.vue")
+    component: "@/pages/Page404" // () => import(/* webpackChunkName: "about" */ "../views/404.vue")
   },
   {
     path: "/user/login",
