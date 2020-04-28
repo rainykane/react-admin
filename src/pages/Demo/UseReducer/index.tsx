@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-import CardItem, { TypeItem } from "./CardItem";
+import CardItem from "./CardItem";
 
 import { InputElement } from "@/types/element.type";
+import { CheckItemType } from "@/components/types";
+import { useChecked } from "@/components";
 
 import "./index.less";
 
-const list: TypeItem[] = [];
+const list: CheckItemType[] = [];
 for (let q = 0; q < 10; q++) {
   list.push({
     id: q,
@@ -15,45 +17,36 @@ for (let q = 0; q < 10; q++) {
   });
 }
 
-type CheckedList = TypeItem[];
-
 export default () => {
-  const [allChecked, setAllChecked] = useState(false);
-  const [checkedList, setCheckedList]: [CheckedList, Function] = useState(
-    list || []
-  );
-  console.log(123);
+  const { checkedAll, newState, dispatch } = useChecked(list);
 
   let count: number = 0;
-  checkedList.map((c: TypeItem) => {
+  newState.map((c: CheckItemType) => {
     return (count += c.price);
   });
 
   const onItemChecked = (id: number, flag: boolean) => {
-    const arr = [...checkedList];
-    arr[id].checked = flag;
-    const checkedLength = arr.filter((item: TypeItem) => !item.checked).length;
-    if (checkedLength === 0) {
-      setAllChecked(true);
-    } else {
-      setAllChecked(false);
-    }
-
-    setCheckedList(arr);
+    dispatch({
+      type: "checked",
+      payload: {
+        id,
+        checked: flag
+      }
+    });
   };
 
   const onCheckedAllChange = (flag: boolean): void => {
-    const arr = [...checkedList].map((item: TypeItem) => {
-      let newItem = { ...item, checked: flag };
-      return newItem;
+    dispatch({
+      type: "checkedAll",
+      payload: {
+        checked: flag
+      }
     });
-    setAllChecked(flag);
-    setCheckedList(arr);
   };
 
   return (
     <div className="main flex flex-column ali-center">
-      {checkedList.map((item: TypeItem) => {
+      {newState.map((item: CheckItemType) => {
         return (
           <CardItem
             {...item}
@@ -65,7 +58,7 @@ export default () => {
       <p>
         <input
           type="checkbox"
-          checked={allChecked}
+          checked={checkedAll}
           onChange={(e: InputElement) => onCheckedAllChange(e.target.checked)}
         />
         全选

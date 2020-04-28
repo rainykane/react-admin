@@ -1,23 +1,18 @@
 import React, { memo } from "react";
 
 import { InputElement } from "@/types/element.type";
+import { CheckItemType } from "@/components/types";
 
-export interface TypeItem {
-  id: number;
-  price: number;
-  checked: boolean;
-}
-
-export interface TypeItemChange extends TypeItem {
+interface CheckItemChangeType extends CheckItemType {
   onItemChecked: (e: boolean) => void;
 }
 
 // memo优化策略
-function areEqual(prevProps: TypeItem, nextProps: TypeItem) {
+function areEqual(prevProps: CheckItemType, nextProps: CheckItemType) {
   return prevProps.checked === nextProps.checked;
 }
 const CardItem = memo(
-  ({ id, price, checked, onItemChecked }: TypeItemChange) => {
+  ({ id, price, checked, onItemChecked }: CheckItemChangeType) => {
     return (
       <div className="item flex jus-between" style={{ width: "150px" }}>
         <input
