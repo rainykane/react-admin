@@ -27,14 +27,15 @@ function reducer(state: CheckItemType[], action: ActionType) {
 }
 
 export const useChecked = (list: CheckItemType[]) => {
-  const [newState, dispatch] = useReducer(reducer, list);
-  const checkedLength = newState.filter((item: CheckItemType) => !item.checked)
-    .length;
+  const [newCheckedList, dispatch] = useReducer(reducer, list);
+  const checkedLength = newCheckedList.filter(
+    (item: CheckItemType) => !item.checked
+  ).length;
   let checkedAll = false;
   if (checkedLength === 0) {
     checkedAll = true;
   } else {
     checkedAll = false;
   }
-  return { checkedAll, newState, dispatch };
+  return { checkedAll, newCheckedList, dispatch };
 };
