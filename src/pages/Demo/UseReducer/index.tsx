@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-
-import { InputElement } from "@/types/element.type";
+import React, { useState } from "react";
 
 import CardItem, { TypeItem } from "./CardItem";
+
+import { InputElement } from "@/types/element.type";
 
 import "./index.less";
 
@@ -18,25 +18,20 @@ for (let q = 0; q < 10; q++) {
 type CheckedList = TypeItem[];
 
 export default () => {
-  const [count, setCount] = useState(0);
   const [allChecked, setAllChecked] = useState(false);
   const [checkedList, setCheckedList]: [CheckedList, Function] = useState(
     list || []
   );
+  console.log(123);
 
-  useEffect(() => {
-    const cList = checkedList.filter((item: TypeItem) => item.checked);
-    console.log(cList);
-    let num: number = 0;
-    cList.map((c: TypeItem) => {
-      return (num += c.price);
-    });
-    setCount(num);
-  }, [checkedList]);
+  let count: number = 0;
+  checkedList.map((c: TypeItem) => {
+    return (count += c.price);
+  });
 
-  const onItemChecked = (index: number, flag: boolean) => {
+  const onItemChecked = (id: number, flag: boolean) => {
     const arr = [...checkedList];
-    arr[index].checked = flag;
+    arr[id].checked = flag;
     const checkedLength = arr.filter((item: TypeItem) => !item.checked).length;
     if (checkedLength === 0) {
       setAllChecked(true);
@@ -58,13 +53,12 @@ export default () => {
 
   return (
     <div className="main flex flex-column ali-center">
-      {checkedList.map((item: TypeItem, index: number) => {
+      {checkedList.map((item: TypeItem) => {
         return (
           <CardItem
-            id={item.id}
-            price={item.price}
-            checked={item.checked}
-            onItemChecked={(e: boolean) => onItemChecked(index, e)}
+            {...item}
+            key={item.id}
+            onItemChecked={(e: boolean) => onItemChecked(item.id, e)}
           />
         );
       })}

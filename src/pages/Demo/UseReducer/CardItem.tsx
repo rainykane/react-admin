@@ -18,10 +18,6 @@ function areEqual(prevProps: TypeItem, nextProps: TypeItem) {
 }
 const CardItem = memo(
   ({ id, price, checked, onItemChecked }: TypeItemChange) => {
-    console.log("cart item rerender");
-    const onChange = (flag: boolean): void => {
-      console.log(flag);
-    };
     return (
       <div className="item flex jus-between" style={{ width: "150px" }}>
         <input
@@ -29,7 +25,6 @@ const CardItem = memo(
           checked={checked}
           type="checkbox"
           onChange={(e: InputElement) => {
-            onChange(e.target.checked);
             onItemChecked(e.target.checked);
           }}
         />
