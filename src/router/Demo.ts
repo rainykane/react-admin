@@ -35,6 +35,13 @@ export default {
       title: "debouce使用",
       icon: "smile",
       component: "@/pages/Demo/UseDebounce"
+    },
+    {
+      path: "/demo/use-reducer",
+      name: "购物车--性能优化",
+      title: "购物车--性能优化",
+      icon: "smile",
+      component: "@/pages/Demo/UseReducer"
     }
   ]
 };
