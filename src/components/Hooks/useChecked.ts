@@ -3,19 +3,20 @@
  */
 import { useReducer } from "react";
 import { CheckItemType, ActionType } from "./hook_types";
+import { CHECKED_CHANGE, CHECKED_ALL_CHANGE } from "./hook_constant";
 
 function reducer(state: CheckItemType[], action: ActionType) {
   const { type, payload } = action;
   const { id, checked } = payload;
   switch (type) {
-    case "checked":
+    case CHECKED_CHANGE:
       state.forEach((element: CheckItemType) => {
         if (element.id === id) {
           element.checked = checked;
         }
       });
       return [...state];
-    case "checkedAll":
+    case CHECKED_ALL_CHANGE:
       state.forEach((element: CheckItemType) => {
         element.checked = checked;
       });
