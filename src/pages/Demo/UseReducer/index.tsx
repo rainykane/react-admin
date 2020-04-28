@@ -18,16 +18,16 @@ for (let q = 0; q < 10; q++) {
 }
 
 export default () => {
-  const { checkedAll, newState, dispatch } = useChecked(list);
+  const { checkedAll, newCheckedList, dispatch } = useChecked(list);
 
   let count: number = 0;
-  newState.map((c: CheckItemType) => {
+  newCheckedList.map((c: CheckItemType) => {
     return (count += c.price);
   });
 
   const onItemChecked = (id: number, flag: boolean) => {
     dispatch({
-      type: "checked",
+      type: "CHECKED_CHANGE",
       payload: {
         id,
         checked: flag
@@ -37,7 +37,7 @@ export default () => {
 
   const onCheckedAllChange = (flag: boolean): void => {
     dispatch({
-      type: "checkedAll",
+      type: "CHECKED_ALL_CHANGE",
       payload: {
         checked: flag
       }
@@ -46,7 +46,7 @@ export default () => {
 
   return (
     <div className="main flex flex-column ali-center">
-      {newState.map((item: CheckItemType) => {
+      {newCheckedList.map((item: CheckItemType) => {
         return (
           <CardItem
             {...item}
