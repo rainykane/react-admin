@@ -1,7 +1,9 @@
 export default {
+  path: "/task",
+  name: "task",
   icon: "crown",
-  name: "任务管理",
-  access: "task",
+  access: "canAdmin",
+  component: "@/pages/Task",
   routes: [
     {
       path: "/task/today",
