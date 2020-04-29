@@ -44,6 +44,8 @@ export default [
     component: "@/pages/User/Login"
   },
   { ...Task },
+
+  /** 新增路由表放在demo路由前面，官方控件有莫名的bug */
   { ...Demo }
   // {
   // path: '/admin',
