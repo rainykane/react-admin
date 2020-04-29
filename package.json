@@ -6,8 +6,8 @@
     "analyze": "cross-env ANALYZE=1 umi build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "test": "umi-test --colors --coverage",
-    "test:coverage": "umi-test --coverage"
+    "test": "umi-test",
+    "test:coverage": "umi-test --colors --coverage"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
