@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 
 import CardItem from "./CardItem";
 import ExampleA from "./ExampleA";
 import ExampleB from "./ExampleB";
 
-import { InputElement } from "@/types/element.type";
+import { UseRef, InputElement } from "@/types";
 import { CheckItemType } from "@/components/types";
 import { useChecked } from "@/components";
 
@@ -23,12 +23,31 @@ export default () => {
   const [textA, setA] = useState("ExampleA");
   const [textB, setB] = useState("ExampleB");
 
+  // 使用 useRef 创建 inputEl
+  const inputEl: UseRef = useRef(null);
+  console.log(inputEl);
+
+  // 使用 useRef 创建 textRef
+  const textRef: UseRef = useRef();
+  const [text, updateText] = useState("");
+
   const { checkedAll, newCheckedList, dispatch } = useChecked(list);
 
   let count: number = 0;
   newCheckedList.map((c: CheckItemType) => {
     return (count += c.price);
   });
+
+  useEffect(() => {
+    // 将 text 值存入 textRef.current 中
+    textRef.current = text;
+    console.log("textRef.current：", textRef.current);
+  }, [text]);
+
+  const onButtonClick = () => {
+    // `current` points to the mounted text input element
+    inputEl.current.value = text;
+  };
 
   const onItemChecked = (id: number, flag: boolean) => {
     dispatch({
@@ -70,6 +89,14 @@ export default () => {
         <button onClick={() => setB("修改后的 ExampleB")}>
           修改传给 ExampleB 的属性
         </button>
+      </div>
+      <div>
+        <input value={text} onChange={e => updateText(e.target.value)} />
+        <br />
+        <br />
+        {/* 保存 input 的 ref 到 inputEl */}
+        <input ref={inputEl} type="text" />
+        <button onClick={onButtonClick}>在 input 上展示文字</button>
       </div>
       <div>
         {newCheckedList.map((item: CheckItemType) => {
