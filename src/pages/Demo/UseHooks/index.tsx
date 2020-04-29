@@ -19,13 +19,12 @@ for (let q = 0; q < 10; q++) {
   });
 }
 
-export default () => {
+export default (): JSX.Element => {
   const [textA, setA] = useState("ExampleA");
   const [textB, setB] = useState("ExampleB");
 
   // 使用 useRef 创建 inputEl
   const inputEl: UseRef = useRef(null);
-  console.log(inputEl);
 
   // 使用 useRef 创建 textRef
   const textRef: UseRef = useRef();
@@ -38,6 +37,7 @@ export default () => {
     return (count += c.price);
   });
 
+  /** 与 DOM 无关的副作用操作请使用 useEffect。 */
   useEffect(() => {
     // 将 text 值存入 textRef.current 中
     textRef.current = text;
@@ -46,7 +46,8 @@ export default () => {
 
   const onButtonClick = () => {
     // `current` points to the mounted text input element
-    inputEl.current.value = text;
+    inputEl.current.value = textRef.current;
+    // inputEl.current.value = text;
   };
 
   const onItemChecked = (id: number, flag: boolean) => {
@@ -92,11 +93,11 @@ export default () => {
       </div>
       <div>
         <input value={text} onChange={e => updateText(e.target.value)} />
+        <button onClick={onButtonClick}>在下面的 input 上展示文字</button>
         <br />
         <br />
         {/* 保存 input 的 ref 到 inputEl */}
         <input ref={inputEl} type="text" />
-        <button onClick={onButtonClick}>在 input 上展示文字</button>
       </div>
       <div>
         {newCheckedList.map((item: CheckItemType) => {
