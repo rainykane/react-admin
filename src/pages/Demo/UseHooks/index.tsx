@@ -5,8 +5,8 @@ import ExampleA from "./ExampleA";
 import ExampleB from "./ExampleB";
 
 import { UseRef, InputElement } from "@/types";
-import { CheckItemType } from "@/components/types";
-import { useChecked } from "@/components";
+import { CheckItemType } from "@/utils/types";
+import { useChecked } from "@/utils";
 
 import "./index.less";
 

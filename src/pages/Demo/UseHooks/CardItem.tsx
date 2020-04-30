@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 
 import { InputElement } from "@/types/element.type";
-import { CheckItemType } from "@/components/types";
+import { CheckItemType } from "@/utils/types";
 
 interface CheckItemChangeType extends CheckItemType {
   onItemChecked: (e: boolean) => void;
