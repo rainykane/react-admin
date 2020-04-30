@@ -1,1 +1,1 @@
-export { useChecked } from "./Hooks";
+export { useChecked, usePath, useQuery } from "./Hooks";
