@@ -1,13 +1,13 @@
-import { Effect, ImmerReducer, Subscription } from 'umi';
+import { Effect, ImmerReducer, Subscription } from "umi";
 
-import { queryUsers } from '@/services';
+import { queryUsers } from "@/services";
 
 export interface LoginState {
   code: string;
 }
 
 export interface LoginType {
-  namespace: 'login';
+  namespace: "login";
   state: LoginState;
   effects: {
     queryCode: Effect;
@@ -21,9 +21,9 @@ export interface LoginType {
 }
 
 const Login: LoginType = {
-  namespace: 'login',
+  namespace: "login",
   state: {
-    code: '',
+    code: ""
   },
   effects: {
     *queryCode({ payload }, { call, put }: { call: any; put: any }): any {
@@ -35,10 +35,10 @@ const Login: LoginType = {
       }
 
       yield put({
-        type: 'getCode',
-        payload: payload,
+        type: "getCode",
+        payload: payload
       });
-    },
+    }
   },
   reducers: {
     // getCode(state, action) {
@@ -50,7 +50,7 @@ const Login: LoginType = {
     // 启用 immer 之后
     getCode(state: any, action: any) {
       state.code = action.payload;
-    },
+    }
   },
   subscriptions: {
     setup({ dispatch, history }: { dispatch: any; history: any }) {
@@ -63,8 +63,8 @@ const Login: LoginType = {
         //   });
         // }
       });
-    },
-  },
+    }
+  }
 };
 
 export default Login;

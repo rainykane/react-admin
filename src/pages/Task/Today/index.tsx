@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { ConnectProps, Loading, connect, useDispatch } from "umi";
 import { PageHeaderWrapper } from "@ant-design/pro-layout";
 
-import { Button } from "antd";
+import { Button, DatePicker } from "antd";
 
 import { TodayTaskState } from "./model";
 
@@ -22,10 +22,17 @@ const TodayTaskPage: FC<PageProps> = ({ todayTask }) => {
         num === 1 ? { name: "哈哈，我改变了useModel" } : { name: "useModel" }
     });
   };
+  const onChange = (date: Date, dateString: string): any => {
+    console.log(date, dateString);
+  };
   return (
     <PageHeaderWrapper>
       <div className="flex model">
         Hello {name}
+        <DatePicker
+          // placeholder="请选择日期"
+          onChange={(date: any, str: string) => onChange(date, str)}
+        />
         <br />
         <Button type="primary" onClick={() => onClick(1)}>
           dispatch

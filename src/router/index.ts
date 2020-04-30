@@ -8,7 +8,7 @@ import Task from "./Task";
       可以隐藏layout
     
  */
-export default [
+const router: any[] = [
   {
     path: "/",
     title: "首页",
@@ -43,10 +43,10 @@ export default [
     exact: true, // 表示是否严格匹配，即 location 是否和 path 完全对应上
     component: "@/pages/User/Login"
   },
-  { ...Task },
+  { ...Task }
 
   /** 新增路由表放在demo路由前面，官方控件有莫名的bug */
-  { ...Demo }
+  // { ...Demo }
   // {
   // path: '/admin',
   // // name: 'admin',
@@ -78,3 +78,9 @@ export default [
   // ],
   // },
 ];
+
+if (process.env.NODE_ENV === "development") {
+  router.push(Demo);
+}
+
+export default router;
