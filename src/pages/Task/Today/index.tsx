@@ -4,8 +4,9 @@ import {
   Loading,
   connect,
   useDispatch,
-  useLocation,
-  useParams
+  useHistory,
+  // useLocation,
+  // useParams
 } from "umi";
 import { PageHeaderWrapper } from "@ant-design/pro-layout";
 
@@ -21,15 +22,15 @@ interface PageProps extends ConnectProps {
 const TodayTaskPage: FC<PageProps> = ({ todayTask }) => {
   const { name } = todayTask;
   const dispatch = useDispatch();
-  const params = useParams();
-  const location = useLocation();
-  console.log(location, params);
+  const his = useHistory();
+
+  console.log(his.action);
 
   const onClick = (num: number) => {
     dispatch({
       type: "todayTask/query",
       payload:
-        num === 1 ? { name: "哈哈，我改变了useModel" } : { name: "useModel" }
+        num === 1 ? { name: "哈哈，我改变了useModel" } : { name: "useModel" },
     });
   };
   const onChange = (date: Date, dateString: string): any => {
@@ -58,12 +59,12 @@ const TodayTaskPage: FC<PageProps> = ({ todayTask }) => {
 export default connect(
   ({
     todayTask,
-    loading
+    loading,
   }: {
     todayTask: TodayTaskState;
     loading: Loading;
   }) => ({
     todayTask,
-    loading: loading.models.todayTask
+    loading: loading.models.todayTask,
   })
 )(TodayTaskPage);
