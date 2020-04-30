@@ -1,18 +1,12 @@
 import React, { FC } from "react";
-import { debounce } from "lodash"; // 防抖
-import {
-  history,
-  LoginState,
-  ConnectProps,
-  Loading,
-  connect,
-  useDispatch
-} from "umi";
 import qs from "qs";
+import { debounce } from "lodash"; // 防抖
+import { history, ConnectProps, Loading, connect, useDispatch } from "umi";
 
 import { Tabs, Form, Button, Checkbox } from "antd";
 
 import LoginFormItem from "./form";
+import { LoginState } from "./type";
 
 import logo from "@/assets/logo.png";
 import "./login.less";
@@ -45,12 +39,13 @@ const Info = storageInfo
       remember: false,
       username: ""
     };
-console.log(Info);
 
 const LoginPage: FC<PageProps> = ({ login }) => {
-  const { code } = login;
-  /** hooks必须放在函数组件内部的第一层 */
   const dispatch = useDispatch();
+  const { code } = login;
+
+  /** hooks必须放在函数组件内部的第一层 */
+  // const dispatch = useDispatch();
 
   /** tab切换 */
   const onTabChange = (e: any) => {

@@ -18,10 +18,11 @@ export let layout: any = {
   name: "昂司打印", // 侧边栏头部产品名，默认值为包名
   // locale: true,
   // pure: true, // 是否删除框架layout
-  menu: {
-    locale: true,
-    defaultOpenAll: false
-  },
+  // menu: {
+  /** 如果开启，需要有对应的src/locals/xxx.ts语言文件匹配 */
+  //   locale: true,
+  //   defaultOpenAll: false,
+  // },
   settings: defaultSettings,
   /** collapsed固定开/关 */
   // collapsed: false,
