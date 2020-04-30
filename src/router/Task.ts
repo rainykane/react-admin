@@ -3,7 +3,7 @@ export default {
   name: "task",
   icon: "crown",
   access: "canAdmin",
-  component: "@/pages/Task",
+  // component: "@/pages/Task",
   routes: [
     {
       path: "/task/today",
