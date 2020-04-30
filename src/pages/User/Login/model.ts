@@ -4,7 +4,7 @@ import { LoginType } from "./type";
 const Login: LoginType = {
   namespace: "login",
   state: {
-    code: ""
+    code: "",
   },
   effects: {
     *queryCode({ payload }, { call, put }: { call: any; put: any }): any {
@@ -17,9 +17,9 @@ const Login: LoginType = {
 
       yield put({
         type: "getCode",
-        payload: payload
+        payload: payload,
       });
-    }
+    },
   },
   reducers: {
     // getCode(state, action) {
@@ -31,21 +31,20 @@ const Login: LoginType = {
     // 启用 immer 之后
     getCode(state: any, action: any) {
       state.code = action.payload;
-    }
+    },
   },
   subscriptions: {
     setup({ dispatch, history }: { dispatch: any; history: any }) {
       return history.listen(({ pathname }: { pathname: any }) => {
-        console.log(pathname);
-
+        // console.log(pathname);
         // if (pathname === '/') {
         //   dispatch({
         //     type: 'queryCode',
         //   });
         // }
       });
-    }
-  }
+    },
+  },
 };
 
 export default Login;
