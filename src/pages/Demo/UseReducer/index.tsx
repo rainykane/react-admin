@@ -3,8 +3,8 @@ import React from "react";
 import CardItem from "./CardItem";
 
 import { InputElement } from "@/types/element.type";
-import { CheckItemType } from "@/components/types";
-import { useChecked } from "@/components";
+import { CheckItemType } from "@/utils/types";
+import { useChecked } from "@/utils";
 
 import "./index.less";
 

@@ -1,5 +1,12 @@
 import React, { FC } from "react";
-import { ConnectProps, Loading, connect, useDispatch } from "umi";
+import {
+  ConnectProps,
+  Loading,
+  connect,
+  useDispatch,
+  useLocation,
+  useParams
+} from "umi";
 import { PageHeaderWrapper } from "@ant-design/pro-layout";
 
 import { Button, DatePicker } from "antd";
@@ -14,6 +21,9 @@ interface PageProps extends ConnectProps {
 const TodayTaskPage: FC<PageProps> = ({ todayTask }) => {
   const { name } = todayTask;
   const dispatch = useDispatch();
+  const params = useParams();
+  const location = useLocation();
+  console.log(location, params);
 
   const onClick = (num: number) => {
     dispatch({

@@ -124,13 +124,17 @@ export function onRouteChange({
 }
 
 /** render覆写 render，会直接阻断所有的运行时 */
-// export function render(oldRender) {
-//     console.log(oldRender);
-//     // fetch('/api/auth').then((auth) => {
-//     //     if (auth.isLogin) { oldRender() }
-//     //     else { history.push('/login'); }
-//     // });
-// }
+export function render(oldRender: any) {
+  console.log(oldRender);
+  oldRender();
+  // fetch("/api/auth").then((auth: any) => {
+  //   if (auth.isLogin) {
+  //     oldRender();
+  //   } else {
+  //     history.push("/login");
+  //   }
+  // });
+}
 
 /** 修改交给 react-dom 渲染时的根组件 */
 // export function rootContainer(container,args:{routes，全量路由配置,plugin，运行时插件机制，history，history 实例}) {
